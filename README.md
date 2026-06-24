@@ -4,6 +4,12 @@
 
 The Control-Aware Risk Scoring Engine calculates **true exploitability** by factoring in the security controls protecting each asset. It integrates with firewalls, EDR platforms, WAFs, and network topology to determine what's actually at risk, not just what's theoretically vulnerable.
 
+## 🚀 New User? Start Here
+
+**[→ Installation & Usage Guide (INSTALL.md)](INSTALL.md)** - Complete walkthrough for installing and running this agent in Claude Code
+
+Already installed? Continue with Quick Start below.
+
 ---
 
 ## 🎯 The Problem
@@ -86,14 +92,26 @@ Result: CRITICAL vuln becomes LOW priority (97.5% protected by controls)
 
 ### Installation
 
-This is a Claude Code agent. No installation required!
+See [INSTALL.md](INSTALL.md) for detailed installation instructions.
 
 ### Usage
 
-```
-In Claude Code:
-> Run the Control-Aware Risk Scoring Engine
+Open Claude Code and use natural language:
 
+```
+Run the Control-Aware Risk Scoring Engine
+```
+
+**Or be more specific:**
+```
+Use the control-aware-risk-scoring agent to prioritize vulnerabilities 
+by actual exploitability considering our security controls
+```
+
+> **Note**: You interact with the agent using natural language in Claude Code. Claude Code automatically handles the agent invocation - you don't need to type any JavaScript code yourself.
+
+**What happens:**
+```
 Agent: Connecting to your security infrastructure...
 ✓ Tenable: 437 assets, 1,247 vulnerabilities
 ✓ Palo Alto: 47 firewall policies
