@@ -1,6 +1,6 @@
 # Installation & Usage Guide
 
-Complete guide for installing and running the Control-Aware Risk Scoring Engine in Claude Code.
+Complete guide for installing and invoking the Control-Aware Risk Scoring skill in Claude Code.
 
 ## What You Need
 
@@ -8,7 +8,7 @@ Complete guide for installing and running the Control-Aware Risk Scoring Engine 
 2. **Tenable access** - MCP server configured or API credentials (required)
 3. **Security control access** - API access to your firewalls, EDR, WAF, etc. (optional but recommended)
 
-## What This Agent Does
+## What This Skill Does
 
 The Control-Aware Risk Scoring Engine calculates **actual exploitability** by factoring in the security controls protecting each asset. Instead of treating all critical vulnerabilities the same, it accounts for:
 
@@ -24,43 +24,42 @@ The Control-Aware Risk Scoring Engine calculates **actual exploitability** by fa
 
 ### Option 1: Install from Repository (Recommended)
 
-If this agent is available in the claude-gsd repository:
+If this skill is available in the claude-gsd repository:
 
 ```bash
 # From Claude Code prompt
 /install control-aware-risk-scoring
 ```
 
-The agent will be automatically installed to `~/.claude/agents/`
+The skill will be automatically installed to `~/.claude/skills/control-aware-risk-scoring/`
 
 ### Option 2: Manual Installation
 
 1. Clone or download this repository:
    ```bash
-   cd ~/.claude/agents
    git clone https://github.com/dpickenstenable/control-aware-risk-scoring.git
    ```
 
-2. Copy the agent definition file:
+2. Copy the skill directory so that `~/.claude/skills/control-aware-risk-scoring/SKILL.md` exists:
    ```bash
-   cp control-aware-risk-scoring/control-aware-risk-scoring-engine.md ~/.claude/agents/
-   cp control-aware-risk-scoring/control-aware-risk-scoring.md ~/.claude/agents/
+   mkdir -p ~/.claude/skills/control-aware-risk-scoring
+   cp -r control-aware-risk-scoring/control-aware-risk-scoring/* ~/.claude/skills/control-aware-risk-scoring/
    ```
 
 3. Verify installation:
    ```bash
-   ls ~/.claude/agents/control-aware-risk-scoring*.md
+   ls ~/.claude/skills/control-aware-risk-scoring/SKILL.md
    ```
 
 ## Pre-Installation Setup
 
 ### Step 1: Configure Tenable Access (Required)
 
-The agent needs access to your Tenable vulnerability data.
+The skill needs access to your Tenable vulnerability data.
 
 #### Option A: Using Tenable MCP Server (Easiest)
 
-If you have Tenable MCP server configured in `~/.claude/config.json`, the agent will automatically use it.
+If you have Tenable MCP server configured in `~/.claude/config.json`, the skill will automatically use it.
 
 Verify MCP connection:
 ```bash
@@ -162,7 +161,7 @@ export AZURE_SUBSCRIPTION_ID="your-subscription-id"
 
 ### Gradual Adoption Strategy
 
-**You don't need all controls configured to get value!** The agent works with whatever you provide:
+**You don't need all controls configured to get value!** The skill works with whatever you provide:
 
 - **Minimum (Tenable only)**: Shows base risk scores - still useful for prioritization
 - **Better (+ Firewall)**: Accounts for network-level protection
@@ -172,9 +171,9 @@ export AZURE_SUBSCRIPTION_ID="your-subscription-id"
 
 **Recommendation:** Start with Tenable + your primary firewall, then add more over time.
 
-## How to Run the Agent
+## How to Invoke the Skill
 
-The agent runs **inside Claude Code** conversations using natural language.
+The skill runs **inside Claude Code** conversations. Invoke it with `/control-aware-risk-scoring` or describe what you want in natural language.
 
 ### Step 1: Start Claude Code
 
@@ -183,34 +182,26 @@ Open Claude Code in your preferred interface:
 - **Desktop**: Launch the Claude Code app
 - **Web**: Visit claude.ai/code
 
-### Step 2: Run the Agent
+### Step 2: Invoke the Skill
 
-In the Claude Code conversation, use natural language:
+In the Claude Code conversation, invoke the skill:
 
 ```
-Run the Control-Aware Risk Scoring Engine
+/control-aware-risk-scoring
 ```
 
 **Or be more specific:**
 
 ```
-Use the control-aware-risk-scoring agent to prioritize vulnerabilities 
+/control-aware-risk-scoring prioritize vulnerabilities 
 by actual exploitability considering our security controls
 ```
 
-**Behind the scenes**, Claude Code executes:
-```javascript
-Agent({
-  subagent_type: "Control-Aware Risk Scoring Engine",
-  prompt: "Prioritize vulnerabilities by actual risk"
-})
-```
-
-> **Note**: You don't type the JavaScript code yourself - just tell Claude Code in natural language what you want to analyze, and it will invoke the agent for you.
+> **Note**: You can invoke the skill directly with `/control-aware-risk-scoring`, or simply describe what you want to analyze in natural language and Claude Code will auto-invoke the skill for you.
 
 ### Using Opus Model for More Thorough Analysis
 
-By default, agents run with the Sonnet model. For more comprehensive, thorough analysis, you can upgrade to the **Opus model with high effort**.
+By default, skills run with the Sonnet model. For more comprehensive, thorough analysis, you can upgrade to the **Opus model with high effort**.
 
 **When to use Opus:**
 - Large environments (1000+ assets), multi-cloud infrastructures, quarterly risk reviews, demonstrating control effectiveness to auditors
@@ -221,12 +212,12 @@ By default, agents run with the Sonnet model. For more comprehensive, thorough a
 
 **How to use Opus:**
 
-In your Claude Code conversation, specify the model before invoking the agent:
+In your Claude Code conversation, specify the model before invoking the skill:
 
 ```
 Switch to Opus model
 
-Then run the Control-Aware Risk Scoring Engine with detailed control analysis
+Then invoke /control-aware-risk-scoring with detailed control analysis
 ```
 
 **Or use the direct command:**
@@ -234,7 +225,7 @@ Then run the Control-Aware Risk Scoring Engine with detailed control analysis
 ```
 /model opus
 
-Run the Control-Aware Risk Scoring Engine with detailed control analysis
+/control-aware-risk-scoring with detailed control analysis
 ```
 
 **What changes with Opus + high effort:**
@@ -271,9 +262,9 @@ Run the Control-Aware Risk Scoring Engine with detailed control analysis
 claude
 ```
 
-**Step 2**: Run the agent with context
+**Step 2**: Invoke the skill with context
 ```
-Run the Control-Aware Risk Scoring Engine to prioritize this week's patching.
+/control-aware-risk-scoring prioritize this week's patching.
 
 Context:
 - We have 437 assets with 1,247 vulnerabilities
@@ -282,9 +273,9 @@ Context:
 - Show me the top 50 by actual risk, not just severity
 ```
 
-**Step 3**: Agent execution (automatic)
+**Step 3**: Skill execution (automatic)
 ```
-Agent: Connecting to security infrastructure...
+Connecting to security infrastructure...
 ✓ Tenable: 437 assets, 1,247 vulnerabilities
 ✓ Palo Alto Panorama: 47 firewall policies
 ✓ CrowdStrike: 342 agents (78% coverage)
@@ -357,7 +348,7 @@ Show me:
 ### Control Gap Analysis
 
 ```
-Run Control-Aware Risk Scoring to identify assets with weak or missing controls
+/control-aware-risk-scoring identify assets with weak or missing controls
 
 Prioritize by:
 1. Number of critical vulnerabilities
@@ -423,7 +414,7 @@ Show me:
 
 ### Control Analysis Dashboard
 
-The agent shows protection for each asset:
+The skill shows protection for each asset:
 
 ```
 ┌─────────────────────────────────────────────────────────┐
@@ -478,19 +469,19 @@ Top 3 Gaps:
 
 ## Troubleshooting
 
-### "Agent not found" or "Unknown subagent_type"
+### "Skill not found" or skill does not auto-invoke
 
-**Problem**: Agent isn't installed correctly
+**Problem**: Skill isn't installed correctly
 
 **Solution**:
 ```bash
 # Verify installation
-ls -la ~/.claude/agents/control-aware-risk-scoring*.md
+ls -la ~/.claude/skills/control-aware-risk-scoring/SKILL.md
 
 # If missing, reinstall
-cd ~/.claude/agents
 git clone https://github.com/dpickenstenable/control-aware-risk-scoring.git
-cp control-aware-risk-scoring/*.md .
+mkdir -p ~/.claude/skills/control-aware-risk-scoring
+cp -r control-aware-risk-scoring/control-aware-risk-scoring/* ~/.claude/skills/control-aware-risk-scoring/
 ```
 
 ### "Tenable API Authentication Failed"
@@ -511,7 +502,7 @@ cp control-aware-risk-scoring/*.md .
 1. Check environment variables are set correctly
 2. Verify API credentials are valid
 3. Test connectivity: `curl https://api.crowdstrike.com` (example)
-4. The agent will still work without that control - it just won't factor it into risk calculations
+4. The skill will still work without that control - it just won't factor it into risk calculations
 
 ### "No control data found for asset"
 
@@ -519,10 +510,10 @@ cp control-aware-risk-scoring/*.md .
 
 **Solution**:
 - This is expected for some assets (e.g., cloud resources, BYOD)
-- Agent will show base risk score without control adjustment
+- Skill will show base risk score without control adjustment
 - Consider deploying controls to unprotected assets
 
-### Agent runs but shows all base risk scores
+### Skill runs but shows all base risk scores
 
 **Problem**: No control integrations configured
 
@@ -602,7 +593,7 @@ export CLOUDFLARE_API_TOKEN="..."
 - ✅ Credentials read from environment variables or MCP config
 - ✅ Used only during execution, never logged
 - ✅ All API calls use HTTPS/TLS encryption
-- ✅ Read-only access - agent never modifies control configurations
+- ✅ Read-only access - skill never modifies control configurations
 
 ### Best Practices
 
@@ -652,7 +643,7 @@ export CLOUDFLARE_API_TOKEN="..."
 ✅ **DO**:
 - Start with Tenable + one control integration, add more over time
 - Use read-only API credentials
-- Provide context about your environment when running the agent
+- Provide context about your environment when invoking the skill
 - Review control gap reports regularly
 - Use actual risk for prioritization, not just VPR/CVSS
 
@@ -669,6 +660,6 @@ export CLOUDFLARE_API_TOKEN="..."
 
 1. Set up Tenable access (required)
 2. Configure at least one security control integration (recommended)
-3. Open Claude Code and say: `"Run the Control-Aware Risk Scoring Engine"`
+3. Open Claude Code and invoke: `/control-aware-risk-scoring`
 
-The agent will show you what's **actually** at risk in your environment!
+The skill will show you what's **actually** at risk in your environment!

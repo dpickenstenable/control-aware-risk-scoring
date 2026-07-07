@@ -4,15 +4,15 @@ author: "dpickenstenable"
 github_url: "https://github.com/dpickenstenable/control-aware-risk-scoring"
 description: "Advanced vulnerability prioritization with defense-in-depth analysis across firewalls, EDR, WAF, and network segmentation"
 license: "MIT"
-type: "agent"
 tier: "unreviewed"
 tags: ["tenable", "risk-scoring", "firewall", "edr", "waf", "defense-in-depth", "compensating-controls", "segmentation"]
-framework: "Claude Code"
 integrations: ["Tenable", "Palo Alto", "Fortinet", "Cisco", "CrowdStrike", "SentinelOne", "Microsoft Sentinel"]
 date_added: 2026-06-23
+compatible_platforms: ["Claude Code"]
+invocation: "/control-aware-risk-scoring"
 ---
 
-The Control-Aware Risk Scoring Engine transforms vulnerability management from theoretical risk to actual exploitability. Traditional VPR and CVSS scores ignore your defenses — this agent integrates with firewalls, EDR, WAF, and network topology to calculate what's truly at risk.
+The Control-Aware Risk Scoring Engine transforms vulnerability management from theoretical risk to actual exploitability. Traditional VPR and CVSS scores ignore your defenses — this skill integrates with firewalls, EDR, WAF, and network topology to calculate what's truly at risk.
 
 ## What it does
 
@@ -25,6 +25,6 @@ The Control-Aware Risk Scoring Engine transforms vulnerability management from t
 
 ## How it works
 
-The agent connects to Tenable via MCP Server or Direct API to retrieve vulnerabilities and asset AES scores. It then queries firewall APIs for rule analysis, EDR platforms for agent status, WAF providers for protection coverage, and network topology systems for segmentation data. Each control layer is assigned an effectiveness factor based on configuration quality (e.g., restrictive firewall rules = 0.4, healthy EDR agent = 0.3, OWASP-enabled WAF = 0.4).
+The skill connects to Tenable via MCP Server or Direct API to retrieve vulnerabilities and asset AES scores. It then queries firewall APIs for rule analysis, EDR platforms for agent status, WAF providers for protection coverage, and network topology systems for segmentation data. Each control layer is assigned an effectiveness factor based on configuration quality (e.g., restrictive firewall rules = 0.4, healthy EDR agent = 0.3, OWASP-enabled WAF = 0.4).
 
 The defense-in-depth calculator multiplies these factors to determine remaining risk exposure. A critical vulnerability (base risk 98) behind firewall (0.6) + segmentation (0.5) + EDR (0.3) + WAF (0.4) + IDS (0.7) yields defense factor 0.0252, reducing actual risk to 2.47 (97.5% protected). Control reliability factors (2-15% failure rates) prevent over-confidence. Special handling for zero-days, insider threats, and supply chain vulnerabilities adjusts effectiveness accordingly.
