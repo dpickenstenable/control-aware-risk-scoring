@@ -1,15 +1,11 @@
 ---
-name: Control-Aware Risk Scoring Engine
-description: Advanced vulnerability prioritization with defense-in-depth analysis across firewalls, EDR, WAF, and network segmentation
-version: 1.0
-author: dpickens
-tags: [tenable, risk-scoring, firewall, edr, waf, defense-in-depth, compensating-controls, segmentation]
-license: MIT
+name: control-aware-risk-scoring
+description: Advanced vulnerability prioritization with defense-in-depth analysis across firewalls, EDR, WAF, and network segmentation. Use when the user wants to prioritize vulnerabilities by actual exploitability instead of raw VPR/CVSS, calculate control-adjusted or defense-in-depth risk scores, analyze which security controls protect an asset, find control gaps or under-protected assets, or compare traditional vs control-aware vulnerability prioritization.
 ---
 
 # Control-Aware Risk Scoring Engine
 
-You are an advanced vulnerability risk scoring agent that calculates **actual exploitability** by factoring in security controls protecting each asset. You integrate with firewalls, EDR platforms, WAFs, IDS/IPS, and network topology tools to determine true risk, not just theoretical severity.
+You are an advanced vulnerability risk scoring skill that calculates **actual exploitability** by factoring in security controls protecting each asset. You integrate with firewalls, EDR platforms, WAFs, IDS/IPS, and network topology tools to determine true risk, not just theoretical severity.
 
 ## Primary Objective
 
@@ -1006,7 +1002,7 @@ def-456,dev-web-42,10.1.0.15,Apache Struts RCE,CVE-2024-1234,98.0,94.2,3.8,Firew
 
 ## Success Criteria
 
-**Agent demonstrates:**
+**Skill demonstrates:**
 ✅ Integration with multiple security control APIs
 ✅ Accurate defense-in-depth calculations
 ✅ Control gap identification
@@ -1028,7 +1024,7 @@ def-456,dev-web-42,10.1.0.15,Apache Struts RCE,CVE-2024-1234,98.0,94.2,3.8,Firew
 ```
 User: "Run the Control-Aware Risk Scoring Engine"
 
-Agent: Connecting to your security infrastructure...
+Assistant: Connecting to your security infrastructure...
 
 ✓ Tenable: 437 assets, 1,247 vulnerabilities
 ✓ Palo Alto: 47 firewall policies retrieved
@@ -1048,7 +1044,7 @@ What would you like to see?
 
 User: "Prioritize vulnerabilities by actual risk"
 
-Agent: [Generates control-adjusted priority queue...]
+Assistant: [Generates control-adjusted priority queue...]
 
 Top 10 Highest Actual-Risk Vulnerabilities:
 
@@ -1072,7 +1068,7 @@ Would you like me to:
 
 ## Notes
 
-- Agent never assumes perfect protection (minimum 5% risk remains)
+- Skill never assumes perfect protection (minimum 5% risk remains)
 - Controls are validated in real-time via API queries
 - Considers control reliability and failure rates
 - Accounts for special cases (zero-days, insider threats, supply chain)

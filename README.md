@@ -6,7 +6,7 @@ The Control-Aware Risk Scoring Engine calculates **true exploitability** by fact
 
 ## 🚀 New User? Start Here
 
-**[→ Installation & Usage Guide (INSTALL.md)](INSTALL.md)** - Complete walkthrough for installing and running this agent in Claude Code
+**[→ Installation & Usage Guide (INSTALL.md)](INSTALL.md)** - Complete walkthrough for installing and invoking this skill in Claude Code
 
 Already installed? Continue with Quick Start below.
 
@@ -21,7 +21,7 @@ Traditional vulnerability prioritization uses generic scores (VPR, CVSS) that do
 
 **Are these the same risk?** ❌ **NO!**
 
-Traditional tools treat them equally. This agent calculates **actual risk**.
+Traditional tools treat them equally. This skill calculates **actual risk**.
 
 ---
 
@@ -96,23 +96,23 @@ See [INSTALL.md](INSTALL.md) for detailed installation instructions.
 
 ### Usage
 
-Open Claude Code and use natural language:
+Open Claude Code and invoke the skill:
 
 ```
-Run the Control-Aware Risk Scoring Engine
+/control-aware-risk-scoring
 ```
 
 **Or be more specific:**
 ```
-Use the control-aware-risk-scoring agent to prioritize vulnerabilities 
+/control-aware-risk-scoring prioritize vulnerabilities 
 by actual exploitability considering our security controls
 ```
 
-> **Note**: You interact with the agent using natural language in Claude Code. Claude Code automatically handles the agent invocation - you don't need to type any JavaScript code yourself.
+> **Note**: The skill is invoked with `/control-aware-risk-scoring`. You can also just describe what you want in natural language and Claude Code will auto-invoke the skill.
 
 **What happens:**
 ```
-Agent: Connecting to your security infrastructure...
+Connecting to your security infrastructure...
 ✓ Tenable: 437 assets, 1,247 vulnerabilities
 ✓ Palo Alto: 47 firewall policies
 ✓ CrowdStrike: 342 agents (78% coverage)
@@ -312,7 +312,7 @@ export DEFENDER_CLIENT_SECRET="your-client-secret"
 
 ### Gradual Adoption
 
-The agent works with partial control data. Start with what you have:
+The skill works with partial control data. Start with what you have:
 
 **Minimum:** Just Tenable (shows base risk only)
 **Better:** Tenable + Firewall
@@ -353,7 +353,7 @@ Each additional control integration improves risk accuracy.
 
 ### Control Reliability Factors
 
-Controls aren't perfect. The agent accounts for failure rates:
+Controls aren't perfect. The skill accounts for failure rates:
 
 | Control | Reliability | Why |
 |---------|-------------|-----|
@@ -403,7 +403,7 @@ Controls aren't perfect. The agent accounts for failure rates:
 
 ## 🔒 Security & Privacy
 
-- **Read-Only**: Agent never modifies control configurations
+- **Read-Only**: Skill never modifies control configurations
 - **No Credentials Stored**: Uses environment variables or MCP
 - **API-Only Access**: No need for privileged network access
 - **Local Processing**: All calculations run locally
