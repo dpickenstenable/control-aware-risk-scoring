@@ -4,12 +4,6 @@
 
 The Control-Aware Risk Scoring Engine calculates **true exploitability** by factoring in the security controls protecting each asset. It integrates with firewalls, EDR platforms, WAFs, and network topology to determine what's actually at risk, not just what's theoretically vulnerable.
 
-## 🚀 New User? Start Here
-
-**[→ Installation & Usage Guide (INSTALL.md)](INSTALL.md)** - Complete walkthrough for installing and invoking this skill in Claude Code
-
-Already installed? Continue with Quick Start below.
-
 ---
 
 ## 🎯 The Problem
@@ -92,7 +86,23 @@ Result: CRITICAL vuln becomes LOW priority (97.5% protected by controls)
 
 ### Installation
 
-See [INSTALL.md](INSTALL.md) for detailed installation instructions.
+This skill installs by copying it into your Claude Code skills directory. There is no automatic installer command.
+
+```bash
+# 1. Clone this repository
+git clone https://github.com/dpickenstenable/control-aware-risk-scoring.git
+
+# 2. Copy the skill so that ~/.claude/skills/control-aware-risk-scoring/SKILL.md exists
+mkdir -p ~/.claude/skills/control-aware-risk-scoring
+cp -r control-aware-risk-scoring/control-aware-risk-scoring/* ~/.claude/skills/control-aware-risk-scoring/
+
+# 3. Verify
+ls ~/.claude/skills/control-aware-risk-scoring/SKILL.md
+```
+
+Restart Claude Code (or start a new session) so it picks up the new skill.
+
+**Prerequisites:** [Claude Code](https://claude.com/claude-code) and Tenable access (MCP server or API keys). See [Configuration](#-configuration) for control integrations.
 
 ### Usage
 
